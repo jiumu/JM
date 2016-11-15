@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dependency\ConventionalRegistrationContext.cs" />
+    <Compile Include="Dependency\DefaultConventionalRegistratrar.cs" />
+    <Compile Include="Dependency\DependencyRegisterAttribute.cs" />
+    <Compile Include="Dependency\IConventionalDependencyRegistrar.cs" />
+    <Compile Include="Dependency\IConventionalRegistrationContext.cs" />
     <Compile Include="Dependency\IIocManager.cs" />
     <Compile Include="Dependency\IIocRegistrar.cs" />
     <Compile Include="Dependency\IIocResolver.cs" />

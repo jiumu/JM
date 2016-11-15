@@ -58,5 +58,49 @@ namespace JM.Dependency
         {
             throw new NotImplementedException();
         }
+
+        public void RegisterType<T>() where T : class, new()
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterType<T>();
+            builder.Update(this.IocContainer);
+        }
+
+        public void RegisterType(Type type)
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterType(type);
+            builder.Update(this.IocContainer);
+        }
+
+        public void RegisterType<TType, TService>() where TType : class, new()
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterType<TType>().As<TService>();
+            builder.Update(this.IocContainer);
+        }
+
+        public void RegisterType(Type type, Type service)
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterType(type).As(service);
+            builder.Update(this.IocContainer);
+        }
+
+        public void RegisterType(Type type, params Type[] services)
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            var resBuilder= builder.RegisterType(type);
+            if (services.Length>0)
+            {
+                resBuilder = resBuilder.AsSelf();
+                foreach (Type item in services)
+                {
+                    resBuilder = resBuilder.As(item);
+                }
+            }
+            builder.Update(this.IocContainer);
+        }
+        
     }
 }

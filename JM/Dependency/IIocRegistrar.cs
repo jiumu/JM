@@ -12,5 +12,12 @@ namespace JM.Dependency
     /// </summary>
     public interface IIocRegistrar
     {
+        void RegisterType<T>() where T : class,new();
+        void RegisterType(Type type);
+        void RegisterType<TType, TService>() where TType : class, new();
+        void RegisterType(Type type, Type service);
+
+        void RegisterType(Type type, params Type[] services);
+       
     }
 }
